@@ -6,7 +6,7 @@ spring:
   redis:
     host: localhost
     password:
-    port: 6379
+    port: 8000
   cloud:
     gateway:
      discovery:
@@ -16,11 +16,11 @@ spring:
      - id: nameRoot
        uri: lb://spring-cloud-producer
        predicates:
-       - Path=/name/**
+       - Path=/hello/**
        filters:
        - StripPrefix=2
      - id: add_request_parameter_route
-#       uri: http://localhost:9000
+#       uri: http://localhost:9002
        uri: lb://spring-cloud-producer
        filters:
        - AddRequestParameter=foo, bar

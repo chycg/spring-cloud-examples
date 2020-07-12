@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerController {
 
     @Autowired
-    HelloRemote HelloRemote;
+    HelloRemote helloRemote;
 	
     @RequestMapping("/hello/{name}")
+//    @HystrixCommand(fallbackMethod = "defaultStores")
     public String index(@PathVariable("name") String name) {
-        return HelloRemote.hello(name);
+        return helloRemote.hello(name);
+    }
+
+    public String defaultStores() {
+        return "Ribbon + hystrix ,提供者服务挂了";
     }
 
 }
